@@ -48,15 +48,22 @@ _start:
     ;inciso c
 .incc:
     mov cx, 8
+    mov bx, cx
 .ciclo:
     mov al, '*'
     call putchar
-    dec cx
-    cmp cx, 1
+    loop .ciclo
 
+    mov al, 10
+    call putchar
+
+    dec bx
+    mov cx, bx
+    jnz .ciclo
 
     mov eax, 1
     int 0x80
+
 
 section	.data
 msgmen db 'Su caracter es menor a m',0xa,0
