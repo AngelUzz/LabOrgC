@@ -61,6 +61,29 @@ _start:
     mov cx, bx
     jnz .ciclo
 
+    ;inciso d
+    mov cx, 10
+    mov esi, arreglo
+.cap:
+    call getche
+    mov [esi], al
+    inc esi
+    mov al, 10
+    call putchar
+    loop .cap
+
+    mov edx, msgcap
+    call puts
+    mov cx, 10
+    mov esi, arreglo
+.mos:
+    mov al, [esi]
+    call putchar
+    mov al, 10
+    call putchar
+    inc esi
+    loop .mos
+
     mov eax, 1
     int 0x80
 
@@ -70,3 +93,7 @@ msgmen db 'Su caracter es menor a m',0xa,0
 msgmay db 'Su caracter es mayor a m',0xa,0
 msglet db 'Su caracter es una letra',0xa,0
 msgnum db 'Su caracter es un numero',0xa,0
+msgcap db 'Datos capturados',0xa,0
+
+section .bss
+arreglo resb 10
